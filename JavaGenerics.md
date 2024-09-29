@@ -111,6 +111,51 @@ intList.add(1);
 intList.add(2);
 ```
 
+Есть обобщенные методы, реализованные с помощью java generics
+Нужно ли в сигнатуре класса определять дженерики или нет?
+Да, в Java можно использовать обобщенные методы (generics) как в обобщенных классах, так и в обычных классах. Если вы хотите создать обобщенный метод в обычном классе, вам не нужно определять дженерики в сигнатуре класса. Вместо этого, вы определяете их непосредственно в сигнатуре метода.
+
+Вот пример обобщенного метода в обычном классе:
+
+```java
+public class MyClass {
+    public <T> void printArray(T[] array) {
+        for (T element : array) {
+            System.out.println(element);
+        }
+    }
+}
+```
+
+В этом примере `<T>` определяется в сигнатуре метода `printArray`, а не в сигнатуре класса `MyClass`.
+
+Если же вы хотите создать обобщенный класс, то дженерики нужно определить в сигнатуре класса:
+
+```java
+public class GenericClass<T> {
+    private T value;
+
+    public GenericClass(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+}
+```
+
+В этом случае `<T>` определяется в сигнатуре класса `GenericClass`.
+
+Таким образом, выбор зависит от того, хотите ли вы сделать обобщенным весь класс или только отдельные методы²³. Если у вас есть еще вопросы или нужны примеры, дайте знать!
+
+Источник: беседа с Copilot, 29.09.2024
+(1) 5.1.2 Обобщения (Generics) | Java Core - it-mentors.com. https://courses.it-mentors.com/java/5.-generics.-collections/5.1.-generics/5.1.2.-obobsheniya-generics.
+(2) Java Generics: описание и методы - computerologia.ru. https://computerologia.ru/java-generics-opisanie-i-metody/.
+(3) 5.1.2 Обобщения (Generics) | Java Core - it-mentors.com. https://bing.com/search?q=java+generics+%d0%be%d0%b1%d0%be%d0%b1%d1%89%d0%b5%d0%bd%d0%bd%d1%8b%d0%b5+%d0%bc%d0%b5%d1%82%d0%be%d0%b4%d1%8b.
+(4) Java | Обобщения (Generics) - METANIT.COM. https://metanit.com/java/tutorial/3.11.php.
+(5) Программирование на Java с нуля #15. Java Generics - обобщенные методы .... https://www.youtube.com/watch?v=0Q--MYvB68M.
+
 ## Заключение
 Generics в Java предоставляют мощный инструмент для создания обобщенного и безопасного кода. Они улучшают читаемость, повторное использование и безопасность типов в вашем коде.
 
