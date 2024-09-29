@@ -5,31 +5,31 @@
 ## Содержание
 1. [Введение](#1-введение)
 2. [Порождающие паттерны](#2-порождающие-паттерны)
-   - Singleton
-   - Factory Method
-   - Abstract Factory
-   - Builder
-   - Prototype
+   - [Singleton](#singleton)
+   - [Factory Method](#factory-method)
+   - [Abstract Factory](#abstract-factory)
+   - [Builder](#builder)
+   - [Prototype](#prototype)
 3. [Структурные паттерны](#3-структурные-паттерны)
    - [Adapter](#adapter)
-   - Bridge
-   - Composite
-   - Decorator
-   - Facade
-   - Flyweight
-   - Proxy
+   - [Bridge](#bridge)
+   - [Composite](#composite)
+   - [Decorator](#decorator)
+   - [Facade](#facade)
+   - [Flyweight](#flyweight)
+   - [Proxy](#proxy)
 4. [Поведенческие паттерны](#4-поведенческие-паттерны)
-   - Chain of Responsibility
-   - Command
-   - Interpreter
-   - Iterator
-   - Mediator
-   - Memento
-   - Observer
-   - State
-   - Strategy
-   - Template Method
-   - Visitor
+   - [Chain of Responsibility](#chain-of-responsibility)
+   - [Command](#command)
+   - [Interpreter](#interpreter)
+   - [Iterator](#iterator)
+   - [Mediator](#mediator)
+   - [Memento](#memento)
+   - [Observer](#observer)
+   - [State](#state)
+   - [Strategy](#strategy)
+   - [Template Method](#template-method)
+   - [Visitor](#visitor)
 5. [Заключение](#5-заключение)
 
 ## 1. Введение
