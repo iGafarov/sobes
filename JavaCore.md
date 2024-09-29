@@ -1,4 +1,3 @@
-```markdown
 ## Содержание
 - [Основы Java](#основы-java)
   - [JVM, JRE и JDK](#jvm-jre-и-jdk)
