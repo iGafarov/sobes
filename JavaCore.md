@@ -1,5 +1,4 @@
-Отлично, вот обновленный `README.md` с навигацией:
-
+```markdown
 ## Содержание
 - [Основы Java](#основы-java)
   - [JVM, JRE и JDK](#jvm-jre-и-jdk)
@@ -80,12 +79,12 @@
    class Dog {
        String name;
        int age;
-       
+
        void bark() {
            System.out.println("Woof!");
        }
    }
-   
+
    Dog myDog = new Dog();
    myDog.name = "Buddy";
    myDog.bark();
@@ -100,13 +99,13 @@
            System.out.println("Eating...");
        }
    }
-   
+
    class Dog extends Animal {
        void bark() {
            System.out.println("Barking...");
        }
    }
-   
+
    Dog myDog = new Dog();
    myDog.eat();
    myDog.bark();
@@ -118,11 +117,11 @@
    ```java
    class Person {
        private String name;
-       
+
        public String getName() {
            return name;
        }
-       
+
        public void setName(String name) {
            this.name = name;
        }
@@ -138,7 +137,7 @@
            System.out.println("Animal sound");
        }
    }
-   
+
    class Dog extends Animal {
        @Override
        void sound() {
@@ -154,17 +153,17 @@
    abstract class Animal {
        abstract void sound();
    }
-   
+
    class Dog extends Animal {
        void sound() {
            System.out.println("Bark");
        }
    }
-   
+
    interface Pet {
        void play();
    }
-   
+
    class Cat implements Pet {
        public void play() {
            System.out.println("Playing with a ball");
@@ -182,11 +181,11 @@
    List<String> list = new ArrayList<>();
    list.add("Apple");
    list.add("Banana");
-   
+
    Set<String> set = new HashSet<>();
    set.add("Apple");
    set.add("Banana");
-   
+
    Map<Integer, String> map = new HashMap<>();
    map.put(1, "One");
    map.put(2, "Two");
@@ -207,13 +206,13 @@
    class Person implements Comparable<Person> {
        String name;
        int age;
-       
+
        @Override
        public int compareTo(Person other) {
            return this.age - other.age;
        }
    }
-   
+
    List<Person> people = new ArrayList<>();
    Collections.sort(people);
    ```
@@ -246,7 +245,7 @@
            System.out.println("Thread is running");
        }
    }
-   
+
    MyThread thread = new MyThread();
    thread.start();
    ```
@@ -256,7 +255,7 @@
    ```java
    class Counter {
        private int count = 0;
-       
+
        public synchronized void increment() {
            count++;
        }
@@ -292,11 +291,11 @@
        String name;
        int age;
    }
-   
+
    Person person = new Person();
    person.name = "John";
    person.age = 30;
-   
+
    FileOutputStream fileOut = new FileOutputStream("person.ser");
    ObjectOutputStream out = new ObjectOutputStream(fileOut);
    out.writeObject(person);
