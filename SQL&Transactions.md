@@ -9,7 +9,7 @@
     - [RIGHT JOIN](#right-join)
     - [FULL JOIN](#full-join)
 4. [ACID гарантии](#acid-гарантии)
-    - [Атомарность](#атомарность--atomicity-)
+    - [Атомарность (Atomicity)](#атомарность--atomicity-)
     - [Согласованность](#согласованность--consistency-)
     - [Изолированность](#изолированность--isolation-) 
     - [Долговечность](#долговечность--durability-)
