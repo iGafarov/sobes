@@ -6,6 +6,7 @@
     - [Конфигурация бинов](#2-конфигурация-бинов)
     - [Управление бинами](#3-управление-бинами)
     - [Очистка бинов из памяти](#4-очистка-бинов-из-памяти)
+    - [Цикл жизни бинов](#5-цикл-жизни-бинов-в-springframework)
 2. [Установка и настройка](#установка-и-настройка)
 3. [Основные концепции](#основные-концепции)
     - [Inversion of Control (IoC)](#inversion-of-control-ioc)
@@ -17,6 +18,7 @@
 6. [Spring MVC](#spring-mvc)
 7. [Spring Boot](#spring-boot)
 8. [Примеры кода](#примеры-кода)
+9. [Аннотации](#аннотации)
 
 ## Введение в Spring Framework
 Spring Framework — это мощный фреймворк для разработки Java-приложений, который предоставляет всестороннюю поддержку инфраструктуры для разработки приложений. Он был разработан Родом Джонсоном в 2003 году.
@@ -85,6 +87,29 @@ public class MyBean {
 ```
 
 Если у вас есть конкретные вопросы или примеры, которые вы хотели бы рассмотреть, дайте знать!
+
+### 5. Цикл жизни бинов в SpringFramework
+
+1. **Создание**: Контейнер IoC создает экземпляр бина, используя конструктор по умолчанию или указанный конструктор.
+2. **Заполнение свойств**: Контейнер устанавливает значения свойств бина, используя сеттеры или внедрение через конструктор.
+3. **Вызов методов интерфейсов BeanNameAware и BeanFactoryAware**: Если бин реализует эти интерфейсы, контейнер вызывает соответствующие методы, чтобы передать имя бина и ссылку на BeanFactory.
+4. **Вызов метода postProcessBeforeInitialization**: Если есть BeanPostProcessor, его метод postProcessBeforeInitialization вызывается перед инициализацией бина.
+5. **Инициализация**: Контейнер вызывает метод инициализации бина, если он указан (например, через аннотацию @PostConstruct или метод init).
+6. **Вызов метода postProcessAfterInitialization**: Если есть BeanPostProcessor, его метод postProcessAfterInitialization вызывается после инициализации бина.
+7. **Использование бина**: Бин готов к использованию в приложении.
+8. **Завершение работы**: Когда контейнер закрывается, он вызывает метод уничтожения бина, если он указан (например, через аннотацию @PreDestroy или метод destroy).
+
+Этот процесс помогает управлять жизненным циклом бинов, обеспечивая их корректную инициализацию и завершение¹²³.
+
+Если у тебя есть конкретные вопросы по какому-то из этапов, дай знать!
+
+Источник: беседа с Copilot, 01.10.2024
+(1) Bean Life Cycle in Spring - CODEDEC. https://codedec.com/tutorials/bean-life-cycle-in-spring/.
+(2) Understanding the Spring Bean Life Cycle - BootcampToProd. https://bootcamptoprod.com/spring-bean-life-cycle-explained/.
+(3) Spring Bean Life Cycle Explained - CodingNomads. https://codingnomads.com/spring-bean-life-cycle.
+(4) Bean life cycle in Java Spring - GeeksforGeeks. https://www.geeksforgeeks.org/bean-life-cycle-in-java-spring/.
+(5) Spring Bean Lifecycle - Spring Framework Guru. https://springframework.guru/spring-bean-lifecycle/.
+(6) Spring Bean Lifecycle: Best Practices and Pitfalls - HowToDoInJava. https://howtodoinjava.com/spring-core/spring-bean-life-cycle/.
 
 
 
@@ -351,3 +376,158 @@ public class Main {
 (4) 1. Introduction to Spring Framework. https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/overview.html.
 (5) Spring Tutorial - Learn Spring - GeeksforGeeks. https://www.geeksforgeeks.org/spring/.
 (6) ru.wikipedia.org. https://ru.wikipedia.org/wiki/Spring_Framework.
+
+## Аннотации
+Конечно! Вот некоторые из наиболее часто используемых аннотаций в Spring Framework и их назначения:
+
+### 1. @Component
+Эта аннотация указывает, что класс является компонентом Spring. Spring автоматически обнаруживает такие классы и регистрирует их как бины в контексте приложения.
+
+```java
+@Component
+public class MyComponent {
+    // код класса
+}
+```
+
+### 2. @Service
+Аннотация `@Service` используется для обозначения сервисного класса. Это специализированная версия `@Component`, которая указывает, что класс содержит бизнес-логику.
+
+```java
+@Service
+public class MyService {
+    // код класса
+}
+```
+
+### 3. @Repository
+Эта аннотация используется для обозначения класса, который взаимодействует с базой данных. Она также является специализированной версией `@Component` и добавляет дополнительные возможности для обработки исключений, связанных с базой данных.
+
+```java
+@Repository
+public class MyRepository {
+    // код класса
+}
+```
+
+### 4. @Controller
+Аннотация `@Controller` используется для обозначения контроллера в MVC-приложении. Она указывает, что класс будет обрабатывать HTTP-запросы.
+
+```java
+@Controller
+public class MyController {
+    // код класса
+}
+```
+
+### 5. @RestController
+Эта аннотация объединяет `@Controller` и `@ResponseBody`, что упрощает создание RESTful веб-сервисов. Все методы в классе, помеченном `@RestController`, возвращают данные напрямую в HTTP-ответе.
+
+```java
+@RestController
+public class MyRestController {
+    // код класса
+}
+```
+
+### 6. @Autowired
+Аннотация `@Autowired` используется для автоматического внедрения зависимостей. Spring автоматически находит и внедряет нужные бины в поля, конструкторы или методы.
+
+```java
+@Component
+public class MyComponent {
+    @Autowired
+    private MyService myService;
+    // код класса
+}
+```
+
+### 7. @Configuration
+Эта аннотация указывает, что класс содержит определения бинов и может использоваться для конфигурации приложения.
+
+```java
+@Configuration
+public class AppConfig {
+    @Bean
+    public MyBean myBean() {
+        return new MyBean();
+    }
+}
+```
+
+### 8. @Bean
+Аннотация `@Bean` используется в методах конфигурационных классов для определения бинов.
+
+```java
+@Configuration
+public class AppConfig {
+    @Bean
+    public MyBean myBean() {
+        return new MyBean();
+    }
+}
+```
+
+### 9. @Value
+Эта аннотация используется для внедрения значений из свойств (properties) в поля бинов.
+
+```java
+@Component
+public class MyComponent {
+    @Value("${my.property}")
+    private String myProperty;
+    // код класса
+}
+```
+
+### 10. @Scope
+Аннотация `@Scope` используется для определения области видимости бина (например, singleton, prototype).
+
+```java
+@Component
+@Scope("prototype")
+public class MyPrototypeBean {
+    // код класса
+}
+```
+
+### 11. @ComponentScan
+Аннотация `@ComponentScan` используется для указания пакетов, которые Spring должен сканировать для поиска компонентов, таких как бины, контроллеры и сервисы. Обычно она используется вместе с аннотацией `@Configuration`.
+
+#### Пример использования:
+```java
+@Configuration
+@ComponentScan(basePackages = "com.example.myapp")
+public class AppConfig {
+    // конфигурация бинов
+}
+```
+В этом примере Spring будет сканировать пакет `com.example.myapp` и все его подпаки для поиска компонентов¹⁴.
+
+### 12. @RefreshScope
+Аннотация `@RefreshScope` используется в Spring Cloud для создания бинов, которые могут быть обновлены в процессе выполнения приложения. Это особенно полезно для обновления конфигурационных данных без перезапуска приложения.
+
+#### Пример использования:
+```java
+@RestController
+@RefreshScope
+public class MyController {
+    @Value("${my.property}")
+    private String myProperty;
+
+    @GetMapping("/property")
+    public String getProperty() {
+        return myProperty;
+    }
+}
+```
+В этом примере значение `myProperty` может быть обновлено в процессе выполнения приложения, и новое значение будет автоматически доступно через метод `getProperty()`²³.
+
+Если у вас есть еще вопросы или нужны дополнительные примеры, дайте знать!
+
+Источник: беседа с Copilot, 01.10.2024
+(1) Spring @ComponentScan Annotation with Example - GeeksforGeeks. https://www.geeksforgeeks.org/spring-componentscan-annotation-with-example/.
+(2) Spring Component Scanning - Baeldung. https://www.baeldung.com/spring-component-scanning.
+(3) Spring Cloud: Refresh scope bean - DEV Community. https://dev.to/saladlam/spring-cloud-refresh-scope-bean-2149.
+(4) Reloading Properties Files in Spring - Baeldung. https://www.baeldung.com/spring-reloading-properties.
+(5) Сканирование компонентов Spring | for-each.dev. https://for-each.dev/lessons/b/-spring-component-scanning/.
