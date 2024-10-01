@@ -17,6 +17,18 @@
 ## Введение в Spring Framework
 Spring Framework — это мощный фреймворк для разработки Java-приложений, который предоставляет всестороннюю поддержку инфраструктуры для разработки приложений. Он был разработан Родом Джонсоном в 2003 году.
 
+Вот несколько ключевых преимуществ и проблем, которые решает Spring:
+
+1. **Упрощение разработки**: Spring позволяет создавать приложения на основе "простых старых Java-объектов" (POJO), что упрощает код и делает его более читаемым и поддерживаемым¹.
+
+2. **Инверсия управления (IoC)**: Spring использует принцип инверсии управления, что позволяет управлять зависимостями между объектами через конфигурационные файлы или аннотации. Это делает код более гибким и тестируемым².
+
+3. **Модульность**: Spring состоит из множества модулей, таких как Spring MVC, Spring Data, Spring Security и другие, которые можно использовать по мере необходимости. Это позволяет создавать масштабируемые и легко расширяемые приложения¹.
+
+4. **Тестирование**: Благодаря IoC и модульности, тестирование приложений становится проще. Можно легко подменять зависимости и тестировать отдельные компоненты приложения².
+
+5. **Интеграция с другими технологиями**: Spring легко интегрируется с различными технологиями и фреймворками, такими как Hibernate, JPA, JMS и другие, что делает его универсальным инструментом для разработки корпоративных приложений¹.
+
 ## Установка и настройка
 Для начала работы с Spring необходимо установить JDK и Maven. Затем можно создать новый Maven-проект и добавить зависимости Spring в файл `pom.xml`.
 
@@ -152,6 +164,122 @@ public class MyApplication {
     }
 }
 ```
+
+## Пример со SpringFramework и без
+
+Конечно! Давайте разберем, что происходит в каждом из примеров кода.
+
+### Пример без Spring Framework
+
+```java
+public class Service {
+    private Repository repository;
+
+    public Service() {
+        this.repository = new Repository();
+    }
+
+    public void doSomething() {
+        repository.action();
+    }
+}
+
+public class Repository {
+    public void action() {
+        System.out.println("Action in Repository");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Service service = new Service();
+        service.doSomething();
+    }
+}
+```
+
+1. **Класс `Service`**:
+   - Имеет поле `repository` типа `Repository`.
+   - В конструкторе создается новый объект `Repository` и присваивается полю `repository`.
+   - Метод `doSomething` вызывает метод `action` у объекта `repository`.
+
+2. **Класс `Repository`**:
+   - Содержит метод `action`, который выводит сообщение на консоль.
+
+3. **Класс `Main`**:
+   - В методе `main` создается объект `Service` и вызывается его метод `doSomething`.
+
+### Пример с использованием Spring Framework
+
+```java
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Service {
+    private final Repository repository;
+
+    @Autowired
+    public Service(Repository repository) {
+        this.repository = repository;
+    }
+
+    public void doSomething() {
+        repository.action();
+    }
+}
+
+@Component
+public class Repository {
+    public void action() {
+        System.out.println("Action in Repository");
+    }
+}
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ComponentScan(basePackages = "com.example")
+public class AppConfig {
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        Service service = context.getBean(Service.class);
+        service.doSomething();
+    }
+}
+```
+
+1. **Аннотация `@Component`**:
+   - Помечает классы `Service` и `Repository` как компоненты Spring, которые будут управляться контейнером Spring.
+
+2. **Класс `Service`**:
+   - Поле `repository` объявлено как `final`, что означает, что оно должно быть инициализировано через конструктор.
+   - Аннотация `@Autowired` указывает Spring, что зависимости должны быть внедрены через конструктор.
+
+3. **Класс `Repository`**:
+   - Содержит метод `action`, который выводит сообщение на консоль.
+
+4. **Класс `AppConfig`**:
+   - Аннотация `@Configuration` указывает, что это класс конфигурации Spring.
+   - Аннотация `@ComponentScan` указывает Spring сканировать пакет `com.example` на наличие компонентов.
+
+5. **Класс `Main`**:
+   - Создает контекст приложения Spring (`ApplicationContext`), используя конфигурацию из `AppConfig`.
+   - Получает экземпляр `Service` из контекста и вызывает его метод `doSomething`.
+
+### Преимущества использования Spring Framework
+
+- **Управление зависимостями**: Spring автоматически создает и внедряет зависимости, что упрощает код и делает его более гибким.
+- **Модульность**: Компоненты легко заменяются и тестируются.
+- **Конфигурация**: Возможность конфигурировать приложение через аннотации, XML или Java-код.
+
+Использование Spring Framework позволяет сосредоточиться на бизнес-логике, а не на управлении зависимостями и конфигурацией.
 
 Этот конспект должен помочь вам начать работу со Spring Framework. Если у вас есть дополнительные вопросы или нужны уточнения, дайте знать!
 
