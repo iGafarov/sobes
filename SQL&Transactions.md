@@ -356,6 +356,7 @@ SELECT balance FROM accounts WHERE account_id = 1;
 
 COMMIT;
 ```
+![image](https://github.com/user-attachments/assets/9e2ae05e-e350-4109-a12d-459d5f1a2c9d)
 
 Надеюсь, этот конспект будет полезен! Если у тебя есть еще вопросы или нужны дополнительные примеры, дай знать.
 
