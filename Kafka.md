@@ -104,3 +104,10 @@ Producer ожидает подтверждение записи сообщени
 - 1 - ждёт от Leader реплики
 - -1(all) - ждёт от всех ISR реплик, включая Leader
 ![image](https://github.com/user-attachments/assets/7b632c06-2a5f-415d-ad07-07f25db63a18)
+
+## Определение партиции
+1) Явно указываем, что хотим записывать в определенную партицию
+2) Round-robin - по порядку 1->2->3 и так по кругу
+3) По хэшу ключа
+
+![image](https://github.com/user-attachments/assets/348e1a4f-5ad2-4b96-9315-3518c29f05e0)
