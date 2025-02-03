@@ -1,23 +1,15 @@
 # Содержание
-1. Среди брокеров есть Contoller
-2. Отличие между паттернами Outbox и Inbox
-    1. Outbox Pattern
-    2. Основные функции Outbox Pattern
-    3. Как это работает: Outbox Pattern
-    4. Inbox Pattern
-    5. Основные функции Inbox Pattern
-    6. Как это работает: Inbox Pattern
-    7. Краткое сравнение Outbox и Inbox
-3. Partitions (FIFO in partitions)
-4. Data Storage
-5. Storage Segments
-6. Removing Data
-7. Replication
-8. Leader replicas
-9. Синхронизация Leader & Follower
-    1. Назначаем ISR (in-sync replicas) реплики
-    2. ISR реплика
-10. ACKS
+1. [Среди брокеров есть Contoller](#среди-брокеров-есть-contoller)
+2. [Отличие между паттернами Outbox и Inbox](#отличие-между-паттернами-outbox-и-inbox-заключается-в-их-назначении-и-области-применения)
+3. [Partitions (FIFO in partitions)](#partions-fifo-in-partitions)
+4. [Data Storage](#data-storage)
+5. [Storage Segments](#storage-segments)
+6. [Removing Data](#removing-data)
+7. [Replication](#replication)
+8. [Leader replicas](#leader-replicas)
+9. [Синхронизация Leader & Follower](#синхронизация-leader--follower)
+10. [ACKS](#acks)
+11. [Определение партиции](#определение-партиции)
 
 
 # Среди брокеров есть Contoller
