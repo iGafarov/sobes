@@ -10,7 +10,7 @@
 9. [Синхронизация Leader & Follower](#синхронизация-leader--follower)
 10. [ACKS](#acks)
 11. [Определение партиции](#определение-партиции)
-
+12. [Consumer](#consumer)
 
 # Среди брокеров есть Contoller
 Он управляет различной конфигурацией кластера, например, назначает LEADER реплики партиций
@@ -111,3 +111,7 @@ Producer ожидает подтверждение записи сообщени
 3) По хэшу ключа
 
 ![image](https://github.com/user-attachments/assets/348e1a4f-5ad2-4b96-9315-3518c29f05e0)
+
+## Consumer
+### В идеале consumers_count = leader_replicas_count
+![image](https://github.com/user-attachments/assets/e94b85f6-2cb7-479c-9722-1915c48fbabf)
