@@ -1,3 +1,25 @@
+# Содержание
+1. Среди брокеров есть Contoller
+2. Отличие между паттернами Outbox и Inbox
+    1. Outbox Pattern
+    2. Основные функции Outbox Pattern
+    3. Как это работает: Outbox Pattern
+    4. Inbox Pattern
+    5. Основные функции Inbox Pattern
+    6. Как это работает: Inbox Pattern
+    7. Краткое сравнение Outbox и Inbox
+3. Partitions (FIFO in partitions)
+4. Data Storage
+5. Storage Segments
+6. Removing Data
+7. Replication
+8. Leader replicas
+9. Синхронизация Leader & Follower
+    1. Назначаем ISR (in-sync replicas) реплики
+    2. ISR реплика
+10. ACKS
+
+
 # Среди брокеров есть Contoller
 Он управляет различной конфигурацией кластера, например, назначает LEADER реплики партиций
 
