@@ -24,6 +24,7 @@
 11. [Отличия RESTful от обычного сервиса](#отличие-restful-от-обычного-сервиса)
 12. [Отличия Spring от обычных библиотек](#отличия-spring-от-обычных-библиотек)
 13. [@Component, @Service, @Repository](#component-service-repository)
+14. [Conditional annotations](#conditional-annotations)
 
 ## Основные компоненты
 Конечно! Вот основные компоненты Spring Framework и их предназначение, а также основные аннотации, которые к ним относятся:
@@ -716,3 +717,95 @@ public class MyApp {
 (1) Какая разница между @Component, @Repository и @Service аннотациями в .... https://ask-dev.ru/info/1316/whats-the-difference-between-component-repository-service-annotations-in-spring.
 (2) В чем разница между аннотациями @Component, @Repository и @Service в .... https://iumi.ru/programmirovanie/java/v-chem-raznitsa-mezhdu-annotatsiiami-component-repository-i-service-v-spring/.
 (3) @Component против @Repository и @Service весной | for-each.dev. https://for-each.dev/lessons/b/-spring-component-repository-service/.
+
+## Conditional annotations
+
+Конечно! Вот информация о основных conditional аннотациях в Spring, оформленная в markdown формате:
+
+### Основные Conditional аннотации в Spring
+
+В Spring Framework существуют несколько аннотаций для условной загрузки компонентов и конфигураций. Основные conditional аннотации включают `@Conditional`, `@Profile`, `@ConditionalOnProperty`, `@ConditionalOnMissingBean` и другие.
+
+### @Conditional
+Аннотация `@Conditional` позволяет загружать компонент или конфигурацию на основе пользовательского условия, которое определяется классом, реализующим интерфейс `Condition`.
+
+**Пример:**
+```java
+public class MyCondition implements Condition {
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+        return context.getEnvironment().getProperty(\"my.property\").equals(\"enabled\");
+    }
+}
+
+@Configuration
+@Conditional(MyCondition.class)
+public class MyConfig {
+    // Конфигурационные бины
+}
+```
+
+### @Profile
+Аннотация `@Profile` позволяет загружать компоненты и конфигурации только для определенных профилей. Это полезно для разделения конфигураций на различные среды, такие как разработка, тестирование и производство.
+
+**Пример:**
+```java
+@Configuration
+@Profile(\"dev\")
+public class DevConfig {
+    // Конфигурационные бины для среды разработки
+}
+
+@Configuration
+@Profile(\"prod\")
+public class ProdConfig {
+    // Конфигурационные бины для производственной среды
+}
+```
+
+### @ConditionalOnProperty
+Аннотация `@ConditionalOnProperty` позволяет загружать компоненты и конфигурации на основе наличия или значения определенного свойства.
+
+**Пример:**
+```java
+@Configuration
+@ConditionalOnProperty(name = \"my.feature.enabled\", havingValue = \"true\")
+public class FeatureConfig {
+    // Конфигурационные бины для включенной функции
+}
+```
+
+### @ConditionalOnMissingBean
+Аннотация `@ConditionalOnMissingBean` позволяет загружать компоненты и конфигурации только если указанный бин отсутствует в контексте.
+
+**Пример:**
+```java
+@Configuration
+public class MyConfig {
+
+    @Bean
+    @ConditionalOnMissingBean
+    public MyService myService() {
+        return new MyServiceImpl();
+    }
+}
+```
+
+### @ConditionalOnBean
+Аннотация `@ConditionalOnBean` позволяет загружать компоненты и конфигурации только если указанный бин присутствует в контексте.
+
+**Пример:**
+```java
+@Configuration
+public class AdditionalConfig {
+
+    @Bean
+    @ConditionalOnBean(name = \"myService\")
+    public AdditionalService additionalService() {
+        return new AdditionalServiceImpl();
+    }
+}
+```
+
+### Заключение
+Эти аннотации обеспечивают гибкую и мощную возможность для управления загрузкой компонентов и конфигураций в приложении Spring. Использование условных аннотаций помогает адаптировать приложение к различным средам и условиям, что упрощает разработку и поддержку кода.
