@@ -8,6 +8,7 @@
     - [LEFT JOIN](#left-join)
     - [RIGHT JOIN](#right-join)
     - [FULL JOIN](#full-join)
+    - [CROSS JOIN](#cross-join)
 4. [ACID гарантии](#acid-гарантии)
     - [Atomicity](#atomicity)
     - [Consistency](#consistency)
@@ -63,6 +64,14 @@ try (Connection conn = DriverManager.getConnection(url, user, password);
 ### LEFT JOIN
 Возвращает все строки из левой таблицы и совпадающие строки из правой таблицы. Если совпадения нет, возвращает NULL для правой таблицы.
 
+![img_2.png](img_2.png)
+
+В customer всего 599 строк
+В actor - 200
+
+left join вернёт 620 строк
+Т.к. будут все записи из customer + дубликаты customer с совпадающими actor
+
 ### Пример на Java
 ```java
 String query = "SELECT employees.name, departments.name FROM employees LEFT JOIN departments ON employees.department_id = departments.id";
@@ -97,6 +106,8 @@ try (Connection conn = DriverManager.getConnection(url, user, password);
 ### FULL JOIN
 Возвращает все строки, когда есть совпадение в одной из таблиц. Если совпадения нет, возвращает NULL для отсутствующих совпадений.
 
+![img.png](img.png)
+
 ### Пример на Java
 ```java
 String query = "SELECT employees.name, departments.name FROM employees FULL JOIN departments ON employees.department_id = departments.id";
@@ -110,6 +121,10 @@ try (Connection conn = DriverManager.getConnection(url, user, password);
     e.printStackTrace();
 }
 ```
+
+### CROSS JOIN
+
+![img_1.png](img_1.png)
 
 ## ACID гарантии
 
