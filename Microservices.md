@@ -176,19 +176,19 @@ GET /orders?userId={userId}
 
 ```json
 {
-  \"user\": {
-    \"userId\": 1,
-    \"name\": \"John Doe\",
-    \"email\": \"john.doe@example.com\"
+  "user": {
+    "userId": 1,
+    "name": "John Doe",
+    "email": "john.doe@example.com"
   },
-  \"orders\": [
+  "orders": [
     {
-      \"orderId\": 101,
-      \"total\": 150.00,
-      \"items\": [
+      "orderId": 101,
+      "total": 150.00,
+      "items": [
         {
-          \"productId\": 1,
-          \"quantity\": 2
+          "productId": 1,
+          "quantity": 2
         }
       ]
     },
@@ -207,11 +207,11 @@ GET /orders?userId={userId}
 
 ```json
 {
-  \"eventType\": \"OrderCreated\",
-  \"data\": {
-    \"userId\": 1,
-    \"orderId\": 101,
-    \"total\": 150.00
+  "eventType": "OrderCreated",
+  "data": {
+    "userId": 1,
+    "orderId": 101,
+    "total": 150.00
   }
 }
 ```
@@ -224,7 +224,7 @@ public class OrderEventListener {
     @Autowired
     private UserService userService;
 
-    @RabbitListener(queues = \"order-events\")
+    @RabbitListener(queues = "order-events")
     public void handleOrderEvent(OrderEvent event) {
         // Обработка события заказа
         userService.processOrderEvent(event);
